@@ -47,6 +47,8 @@ class MyReview(tk.Tk):
         self.right_frame.pack(side=tk.RIGHT)
         self.label = tk.Label(self.right_frame, text=self.get_metadata(self.ind), justify="left")
         self.label.pack(side=tk.TOP)
+
+        # Initialize the "Save Index" buton 
         self.button_print = tk.Button(self.right_frame, text="Save Index", command=self.handle_save)
         self.button_print.pack(side=tk.TOP)
 
@@ -66,10 +68,10 @@ class MyReview(tk.Tk):
         self.button_bias = tk.Button(self.right_frame, text="Set new U Bias", command=self.set_bias)
         self.button_bias.pack(side=tk.TOP)
 
+        # Initialize the first depicted Figure
         self.setpoint = float(self.setpoint_entry.get())
         self.bias = float(self.bias_entry.get())
 
-        # Initialize the first depicted Figure
         self.fig = Figure(dpi=100,figsize=(16*2/3,9*2/3))
         self.ax_data = self.fig.add_subplot(121)
         self.ax_curr = host_subplot(122,figure=self.fig)
@@ -84,7 +86,7 @@ class MyReview(tk.Tk):
         self.set_izero()
         self.set_bias()
 
-        # Initialize the buton press events for forward and backward 
+        # Initialize the buton press events for forward, backward, and return 
         self.bind("<Right>", self.handle_next)
         self.bind("<Left>", self.handle_previous)
         self.bind("<Return>", self.handle_return)
